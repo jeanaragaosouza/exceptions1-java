@@ -35,23 +35,15 @@ public class Principal {
 			checkin = sdf.parse(sc.next());
 			System.out.println("Data de check-out (dd/MM/yyyy): ");	
 			checkout = sdf.parse(sc.next());
+		
+			String error = reserva.atualizaData(checkin, checkout);
+			if(error != null) {
+				System.out.println("Erro na Reserva: " + error);
+			}else {	
+				System.out.println("Reserva: " + reserva);			
+			}		
 			
-			Date agora = new Date();
-			
-			if(checkin.before(agora) || checkout.before(agora)) {
-				System.out.println("Erro na reserva: A data de reserva deve ser maior que a data de checkin");
-			}else if (!checkout.after(checkin)) {
-				System.out.println("Erro na reserva: A data de check-out deve ser maior que a data de checkin");
-			}else {
-				reserva.atualizaData(checkin, checkout);
-				System.out.println("Reserva: " + reserva);				
-			}
-			
-
-
 		}
-		
-		
 		
 		
 	sc.close();
